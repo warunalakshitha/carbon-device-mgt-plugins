@@ -542,6 +542,13 @@
                 <version>${carbon.devicemgt.plugins.version}</version>
             </dependency>
 
+            <!-- real time Operations dependencies-->
+            <dependency>
+                <groupId>org.wso2.carbon.devicemgt-plugins</groupId>
+                <artifactId>org.wso2.carbon.device.mgt.extensions.realtime</artifactId>
+                <version>${carbon.devicemgt.plugins.version}</version>
+            </dependency>
+
             <!-- AppM dependencies -->
             <dependency>
                 <groupId>org.wso2.carbon.appmgt</groupId>
