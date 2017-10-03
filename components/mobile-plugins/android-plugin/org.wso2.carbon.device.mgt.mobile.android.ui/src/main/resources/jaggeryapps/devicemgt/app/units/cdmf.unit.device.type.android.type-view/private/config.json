@@ -6,6 +6,7 @@
         "analyticsEnabled": "false",
         "groupingEnabled": "false",
         "scopes" : [
+            "perm:android:file-transfer",
             "perm:android:enroll",
             "perm:android:wipe",
             "perm:android:ring",
@@ -134,6 +135,44 @@
             "ENTERPRISE_WIPE": {
                 "icon": "fw-block",
                 "permission": "/device-mgt/devices/owning-device/operations/android/enterprise-wipe"
+            },
+            "FILE_TRANSFER": {
+                "icon": "fw-save",
+                "formParams": [
+                    {
+                        "type": "bi-radio",
+                        "name": "selection",
+                        "id": "upload",
+                        "optional": false,
+                        "yesValue": "FILE DOWNLOAD",
+                        "noValue": "FILE UPLOAD"
+                    },
+                    {
+                        "type": "text",
+                        "id": "fileURL",
+                        "optional": false,
+                        "label": "URL for file upload"
+                    },
+                    {
+                        "type": "text",
+                        "id": "userName",
+                        "optional": false,
+                        "label": "User Name (Ignore if you don't need authentication.)"
+                    },
+                    {
+                        "type": "password",
+                        "id": "ftpPassword",
+                        "optional": false,
+                        "label": "Password (Ignore if you don't need authentication.)"
+                    },
+                    {
+                        "type": "text",
+                        "id": "fileLocation",
+                        "optional": false,
+                        "label": "File location in the device"
+                    }
+                ],
+                "permission": "/device-mgt/devices/owning-device/operations/android/file-transfer"
             },
             "WIPE_DATA": {
                 "icon": "fw-delete",

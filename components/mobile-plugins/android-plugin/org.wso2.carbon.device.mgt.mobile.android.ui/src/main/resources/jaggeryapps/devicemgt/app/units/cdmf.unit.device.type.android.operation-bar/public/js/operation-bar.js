@@ -24,6 +24,9 @@ function operationSelect(selection) {
     $(modalPopupContent).addClass("operation-data");
     $(modalPopupContent).html($(" .operation[data-operation-code=" + selection + "]").html());
     $(modalPopupContent).data("operation-code", selection);
+    if (selection === "FILE_TRANSFER") {
+        fillUserName();
+    }
     showPopup();
 }
 
@@ -31,6 +34,44 @@ var resetLoader = function () {
     $("#btnSend").removeClass("hidden");
     $('#lbl-execution').addClass("hidden");
 };
+
+function fillUserName() {
+    var inputBox = document.getElementById('fileURL');
+    var regexp = ':\/\/[^\/]*@';
+    var pattern = new RegExp(regexp);
+    jQuery(inputBox).on('input', function () {
+            var fileUrl = inputBox.value;
+            var res = pattern.test(fileUrl);
+            if (res) {
+                var name = fileUrl.match(regexp).toString();
+                document.getElementById('userName').value = name.substring(3, name.length - 1);
+            } else {
+                document.getElementById('userName').value = "";
+                document.getElementById('userName').placeholder = "User Name"
+            }
+        }
+    );
+}
+
+/**
+ * This changes the text box label when the operation is toggled between FILE UPLOAD and FILE DOWNLOAD
+ * and shows an info label for FILE UPLOAD regarding saving location.
+ * @param type
+ */
+function changeLabel(type) {
+    $(".modal #operation-error-msg").addClass("hidden");
+    if (type == "no") {
+        $(".modal #operation-warn-msg span").text("File will be saved in default location if not specified.");
+        $(".modal #operation-warn-msg").removeClass("hidden");
+        document.getElementById('fileURL').placeholder = "File URL";
+        document.getElementById('fileLocation').placeholder = "Location to save file in device";
+    } else {
+        $(".modal #operation-warn-msg").addClass("hidden");
+        document.getElementById('fileURL').placeholder = "URL for file upload";
+        document.getElementById('fileLocation').placeholder = "File location in the device";
+    }
+    fillUserName();
+}
 
 function submitForm(formId) {
     $("#btnSend").addClass("hidden");
@@ -53,9 +94,11 @@ function submitForm(formId) {
         } else if (input.data("param-type") == "form") {
             var prefix = (uriencodedFormStr == "") ? "" : "&";
             uriencodedFormStr += prefix + input.attr("id") + "=" + input.val();
-            if (input.attr("type") == "text") {
+            if (input.attr("type") == "text" || input.attr("type") == "password") {
                 payload[input.attr("id")] = input.val();
             } else if (input.attr("type") == "checkbox") {
+                payload[input.attr("id")] = input.is(":checked");
+            } else if (input.attr("type") == "radio") {
                 payload[input.attr("id")] = input.is(":checked");
             }
         }
@@ -76,7 +119,7 @@ function submitForm(formId) {
         var defaultStatusClasses = "fw fw-stack-1x";
         var content = $("#operation-response-template").find(".content");
         var title = content.find("#title");
-        title.attr("class","center-block text-center");
+        title.attr("class", "center-block text-center");
         var statusIcon = content.find("#status-icon");
         var description = content.find("#description");
         description.html("");
@@ -179,6 +222,16 @@ function validatePayload(operationCode, payload) {
                 returnVal = "Message Body Can't be empty !";
             }
             break;
+        case "FILE_TRANSFER":
+            if (payload.upload && !payload.fileURL) {
+                returnVal = "Please enter the URL of the file";
+            } else if (!payload.upload && !payload.fileURL) {
+                returnVal = "Please enter the FTP URL of the folder to upload file";
+            }
+            else if (!payload.upload && !payload.fileLocation) {
+                returnVal = "Please specify the file location in device";
+            }
+            break;
         default:
             break;
 
@@ -237,6 +290,18 @@ var generatePayload = function (operationCode, operationData, deviceList) {
                 "operation": {
                     "lockCode": operationData["lockCode"]
                 }
+            };
+            break;
+        case androidOperationConstants["FILE_TRANSFER"]:
+            operationType = operationTypeConstants["PROFILE"];
+            payload = {
+                "operation": {
+                    "fileURL": operationData["fileURL"],
+                    "userName": operationData["userName"],
+                    "ftpPassword": operationData["ftpPassword"],
+                    "fileLocation": operationData["fileLocation"]
+                },
+                "upload": operationData["upload"]
             };
             break;
         case androidOperationConstants["ENCRYPT_STORAGE_OPERATION_CODE"]:
@@ -433,5 +498,6 @@ var androidOperationConstants = {
     "SET_STATUS_BAR_DISABLED": "SET_STATUS_BAR_DISABLED",
     "APPLICATION_OPERATION_CODE": "APP-RESTRICTION",
     "SYSTEM_UPDATE_POLICY_CODE": "SYSTEM_UPDATE_POLICY",
-    "KIOSK_APPS_CODE": "KIOSK_APPS"
+    "KIOSK_APPS_CODE": "KIOSK_APPS",
+    "FILE_TRANSFER": "FILE_TRANSFER"
 };
