@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ * Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  *
  * WSO2 Inc. licenses this file to you under the Apache License,
  * deviceId 2.0 (the "License"); you may not use this file except
@@ -38,8 +38,9 @@ public class SubscriptionEndpoint {
     /**
      * Web socket onMessage - When client sends a message
      *
-     * @param session - Users registered session.
-     * @param message - Status code for web-socket close.
+     * @param session    - Registered  session.
+     * @param deviceType - DeviceType
+     * @param message    - String Message which needs to send to peer
      */
     public void onMessage(Session session, String message, @PathParam("deviceType") String deviceType, @PathParam
             ("deviceId") String deviceId) {
@@ -64,10 +65,12 @@ public class SubscriptionEndpoint {
     }
 
     /**
-     * Web socket onMessage - When client sends a message
+     * Web socket onMessage use When client sends a message
      *
-     * @param session - Users registered session.
-     * @param message - Message which needs to send to peer
+     * @param session    - Registered  session.
+     * @param deviceType - DeviceType
+     * @param deviceId   - Device Identifier
+     * @param message    - Byte Message which needs to send to peer
      */
     public void onMessage(Session session, byte[] message, @PathParam("deviceType") String deviceType, @PathParam
             ("deviceId") String deviceId) {
@@ -92,10 +95,12 @@ public class SubscriptionEndpoint {
     }
 
     /**
-     * Web socket onClose - Remove the registered sessions
+     * Web socket onClose use to handle  socket connection close
      *
-     * @param session - Users registered session.
-     * @param reason  - Status code for web-socket close.
+     * @param session    - Registered  session.
+     * @param deviceType - DeviceType
+     * @param deviceId   - Device Identifier
+     * @param reason     - Status code for web-socket close.
      */
     public void onClose(Session session, CloseReason reason, @PathParam("deviceType") String deviceType, @PathParam
             ("deviceId") String deviceId) {
@@ -110,10 +115,12 @@ public class SubscriptionEndpoint {
     }
 
     /**
-     * Web socket onError - Remove the registered sessions
+     * Web socket onError use to handle  socket connection error
      *
-     * @param session   - Users registered session.
-     * @param throwable - Status code for web-socket close.
+     * @param session    - Registered  session.
+     * @param throwable  - Web socket exception
+     * @param deviceType - DeviceType
+     * @param deviceId   - Device Identifier
      */
     public void onError(Session session, Throwable throwable, @PathParam("deviceType") String deviceType, @PathParam
             ("deviceId") String deviceId) {
