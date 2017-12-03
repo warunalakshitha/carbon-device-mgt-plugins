@@ -16,7 +16,7 @@
  *   under the License.
  *
  */
-package org.wso2.carbon.apimgt.handlers.common;
+package org.wso2.carbon.device.mgt.extensions.remote.session.common;
 
 /**
  * This holds the constants related to remote session tests

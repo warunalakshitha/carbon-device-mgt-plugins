@@ -16,12 +16,12 @@
  *   under the License.
  *
  */
-package org.wso2.carbon.apimgt.handlers;
+package org.wso2.carbon.device.mgt.extensions.remote.session;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.wso2.carbon.apimgt.handlers.common.BaseRemoteSessionTest;
+import org.wso2.carbon.device.mgt.extensions.remote.session.common.BaseRemoteSessionTest;
 import org.wso2.carbon.device.mgt.common.DeviceManagementException;
 import org.wso2.carbon.device.mgt.common.InvalidDeviceException;
 import org.wso2.carbon.device.mgt.common.authorization.DeviceAccessAuthorizationException;

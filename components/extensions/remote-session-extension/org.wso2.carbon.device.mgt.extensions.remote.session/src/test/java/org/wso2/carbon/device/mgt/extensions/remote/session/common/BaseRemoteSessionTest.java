@@ -15,7 +15,7 @@
 * under the License.
 *
 */
-package org.wso2.carbon.apimgt.handlers.common;
+package org.wso2.carbon.device.mgt.extensions.remote.session.common;
 
 import org.testng.annotations.BeforeSuite;
 import org.wso2.carbon.base.MultitenantConstants;

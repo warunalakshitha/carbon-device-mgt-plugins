@@ -15,18 +15,17 @@
 * under the License.
 *
 */
-package org.wso2.carbon.apimgt.handlers;
+package org.wso2.carbon.device.mgt.extensions.remote.session;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.solr.request.macro.MacroExpander;
 import org.mockito.Mockito;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.wso2.carbon.apimgt.handlers.common.BaseRemoteSessionTest;
-import org.wso2.carbon.apimgt.handlers.common.RemoteSessionTestConstants;
-import org.wso2.carbon.apimgt.handlers.common.ServiceHolder;
+import org.wso2.carbon.device.mgt.extensions.remote.session.common.BaseRemoteSessionTest;
+import org.wso2.carbon.device.mgt.extensions.remote.session.common.RemoteSessionTestConstants;
+import org.wso2.carbon.device.mgt.extensions.remote.session.common.ServiceHolder;
 import org.wso2.carbon.base.MultitenantConstants;
 import org.wso2.carbon.device.mgt.common.DeviceIdentifier;
 import org.wso2.carbon.device.mgt.common.DeviceManagementException;

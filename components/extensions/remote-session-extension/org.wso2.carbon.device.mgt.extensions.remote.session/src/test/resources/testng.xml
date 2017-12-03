@@ -23,8 +23,8 @@
 
     <test name="API Management Auth Handlers" preserve-order="true" parallel="false">
         <classes>
-            <class name="org.wso2.carbon.apimgt.handlers.RemoteSessionManagerStartupListenerTest"/>
-            <class name="org.wso2.carbon.apimgt.handlers.RemoteSessionManagementServiceTest"/>
+            <class name="org.wso2.carbon.device.mgt.extensions.remote.session.RemoteSessionManagerStartupListenerTest"/>
+            <class name="org.wso2.carbon.device.mgt.extensions.remote.session.RemoteSessionManagementServiceTest"/>
         </classes>
     </test>
 </suite>
