@@ -21,12 +21,12 @@ package org.wso2.carbon.device.mgt.extensions.remote.session;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.wso2.carbon.device.mgt.extensions.remote.session.common.BaseRemoteSessionTest;
 import org.wso2.carbon.device.mgt.common.DeviceManagementException;
 import org.wso2.carbon.device.mgt.common.InvalidDeviceException;
 import org.wso2.carbon.device.mgt.common.authorization.DeviceAccessAuthorizationException;
 import org.wso2.carbon.device.mgt.common.operation.mgt.OperationManagementException;
 import org.wso2.carbon.device.mgt.core.config.DeviceConfigurationManager;
+import org.wso2.carbon.device.mgt.extensions.remote.session.common.BaseRemoteSessionTest;
 import org.wso2.carbon.device.mgt.extensions.remote.session.exception.RemoteSessionManagementException;
 import org.wso2.carbon.device.mgt.extensions.remote.session.internal.RemoteSessionManagementDataHolder;
 import org.wso2.carbon.device.mgt.extensions.remote.session.listener.RemoteSessionManagerStartupListener;
@@ -51,9 +51,9 @@ public class RemoteSessionManagerStartupListenerTest extends BaseRemoteSessionTe
         remoteSessionManagerStartupListener = new RemoteSessionManagerStartupListener();
     }
 
-    @Test(description = "Client initiate the remote session",
+    @Test(description = "Start Remote Session Manager Startup Listener",
           priority = 1)
-    public void initiateRemoteClientSessionTest()
+    public void startRemoteSessionManagerStartupListenerTest()
             throws DeviceAccessAuthorizationException, OperationManagementException, InvalidDeviceException,
             RemoteSessionManagementException {
         remoteSessionManagerStartupListener.completedServerStartup();

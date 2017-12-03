@@ -46,8 +46,8 @@ public class BaseRemoteSessionTest {
                 System.setProperty("carbon.home", file.getAbsolutePath());
             }
         }
-        PrivilegedCarbonContext.getThreadLocalCarbonContext().setTenantDomain(MultitenantConstants
-                .SUPER_TENANT_DOMAIN_NAME);
+        PrivilegedCarbonContext.getThreadLocalCarbonContext()
+                .setTenantDomain(MultitenantConstants.SUPER_TENANT_DOMAIN_NAME);
         PrivilegedCarbonContext.getThreadLocalCarbonContext().setTenantId(MultitenantConstants.SUPER_TENANT_ID);
     }
 

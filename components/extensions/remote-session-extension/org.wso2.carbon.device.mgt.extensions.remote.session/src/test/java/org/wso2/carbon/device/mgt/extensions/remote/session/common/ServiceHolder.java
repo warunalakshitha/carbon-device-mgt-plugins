@@ -24,12 +24,11 @@ import org.wso2.carbon.device.mgt.extensions.remote.session.RemoteSessionManagem
 import org.wso2.carbon.device.mgt.extensions.remote.session.RemoteSessionManagementServiceImpl;
 
 /**
- * Class for store remote management service instances
+ * Class for store remote session management service instances
  */
 public class ServiceHolder {
 
     private static ServiceHolder instance;
-    private static final Log log = LogFactory.getLog(ServiceHolder.class);
 
     private ServiceHolder() {
     }
@@ -42,8 +41,7 @@ public class ServiceHolder {
     }
 
     public RemoteSessionManagementService getRemoteSessionManagementService() {
-        RemoteSessionManagementService RemoteSessionManagementService =
-                new RemoteSessionManagementServiceImpl();
+        RemoteSessionManagementService RemoteSessionManagementService = new RemoteSessionManagementServiceImpl();
         return RemoteSessionManagementService;
     }
 

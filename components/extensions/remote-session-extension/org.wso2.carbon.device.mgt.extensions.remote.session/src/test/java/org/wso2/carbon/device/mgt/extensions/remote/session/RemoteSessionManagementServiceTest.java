@@ -23,9 +23,6 @@ import org.mockito.Mockito;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.wso2.carbon.device.mgt.extensions.remote.session.common.BaseRemoteSessionTest;
-import org.wso2.carbon.device.mgt.extensions.remote.session.common.RemoteSessionTestConstants;
-import org.wso2.carbon.device.mgt.extensions.remote.session.common.ServiceHolder;
 import org.wso2.carbon.base.MultitenantConstants;
 import org.wso2.carbon.device.mgt.common.DeviceIdentifier;
 import org.wso2.carbon.device.mgt.common.DeviceManagementException;
@@ -38,6 +35,9 @@ import org.wso2.carbon.device.mgt.core.DeviceManagementConstants;
 import org.wso2.carbon.device.mgt.core.service.DeviceManagementProviderService;
 import org.wso2.carbon.device.mgt.extensions.remote.session.authentication.AuthenticationInfo;
 import org.wso2.carbon.device.mgt.extensions.remote.session.authentication.OAuthAuthenticator;
+import org.wso2.carbon.device.mgt.extensions.remote.session.common.BaseRemoteSessionTest;
+import org.wso2.carbon.device.mgt.extensions.remote.session.common.RemoteSessionTestConstants;
+import org.wso2.carbon.device.mgt.extensions.remote.session.common.ServiceHolder;
 import org.wso2.carbon.device.mgt.extensions.remote.session.exception.RemoteSessionManagementException;
 import org.wso2.carbon.device.mgt.extensions.remote.session.internal.RemoteSessionManagementDataHolder;
 
@@ -107,7 +107,7 @@ public class RemoteSessionManagementServiceTest extends BaseRemoteSessionTest {
 
         ServiceHolder.getInstance().getRemoteSessionManagementService()
                 .sendMessageToPeer(clientSession, RemoteSessionTestConstants.MESSAGE);
-        log.info("Client sent remote string message :"+ RemoteSessionTestConstants.MESSAGE +" to device with type: "
+        log.info("Client sent remote string message :" + RemoteSessionTestConstants.MESSAGE + " to device with type: "
                 + RemoteSessionTestConstants.DEVICE_TYPE + " and device id: " + RemoteSessionTestConstants.DEVICE_ID);
     }
 
@@ -116,7 +116,7 @@ public class RemoteSessionManagementServiceTest extends BaseRemoteSessionTest {
     public void SendRemoteMessageResponseToClientTest() throws RemoteSessionManagementException {
         ServiceHolder.getInstance().getRemoteSessionManagementService()
                 .sendMessageToPeer(deviceSession, RemoteSessionTestConstants.MESSAGE);
-        log.info("Device sent remote message :"+ RemoteSessionTestConstants.MESSAGE_RESPONSE +" to client with client"
+        log.info("Device sent remote message :" + RemoteSessionTestConstants.MESSAGE_RESPONSE + " to client with client"
                 + " session id: " + clientSession.getId());
     }
 
@@ -126,7 +126,7 @@ public class RemoteSessionManagementServiceTest extends BaseRemoteSessionTest {
 
         ServiceHolder.getInstance().getRemoteSessionManagementService()
                 .sendMessageToPeer(clientSession, RemoteSessionTestConstants.MESSAGE.getBytes());
-        log.info("Client sent remote byte message :"+ RemoteSessionTestConstants.MESSAGE +" to device with type: "
+        log.info("Client sent remote byte message :" + RemoteSessionTestConstants.MESSAGE + " to device with type: "
                 + RemoteSessionTestConstants.DEVICE_TYPE + " and device id: " + RemoteSessionTestConstants.DEVICE_ID);
     }
 
@@ -135,7 +135,7 @@ public class RemoteSessionManagementServiceTest extends BaseRemoteSessionTest {
     public void SendRemoteByteMessageResponseToClientTest() throws RemoteSessionManagementException {
         ServiceHolder.getInstance().getRemoteSessionManagementService()
                 .sendMessageToPeer(deviceSession, RemoteSessionTestConstants.MESSAGE.getBytes());
-        log.info("Device sent remote byte message :"+ RemoteSessionTestConstants.MESSAGE_RESPONSE +" to client with "
+        log.info("Device sent remote byte message :" + RemoteSessionTestConstants.MESSAGE_RESPONSE + " to client with "
                 + "client session id: " + clientSession.getId());
     }
 
@@ -144,7 +144,7 @@ public class RemoteSessionManagementServiceTest extends BaseRemoteSessionTest {
     public void EndRemoteSesssionTest() throws RemoteSessionManagementException {
         ServiceHolder.getInstance().getRemoteSessionManagementService()
                 .endSession(clientSession, "Client closed the " + "" + "session");
-        log.info("Client end the session");
+        log.info("Client closed the session");
         Assert.assertEquals(RemoteSessionManagementDataHolder.getInstance().getSessionMap().size(), 0,
                 "The session count should be 0 after closing sessions");
     }
@@ -152,10 +152,10 @@ public class RemoteSessionManagementServiceTest extends BaseRemoteSessionTest {
     /**
      * Init Mock objects and assign to related data holder
      *
-     * @throws OperationManagementException throws if an error occur while adding an operation
-     * @throws InvalidDeviceException throws error when passing invalid device data
+     * @throws OperationManagementException       throws if an error occur while adding an operation
+     * @throws InvalidDeviceException             throws error when passing invalid device data
      * @throws DeviceAccessAuthorizationException throws when unauthorised user access the device
-     * @throws IOException throws when error occur with session
+     * @throws IOException                        throws when error occur with session
      */
     private void initMocks()
             throws OperationManagementException, InvalidDeviceException, DeviceAccessAuthorizationException,
